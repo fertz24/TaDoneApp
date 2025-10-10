@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "215244080211",
+    "project_id": "tadone-99353",
+    "storage_bucket": "tadone-99353.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:215244080211:android:a878ea192ee9fe378df2a6",
+        "android_client_info": {
+          "package_name": "com.tadone.todo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "215244080211-lp3ks7jgiotpr9dlaghhqlcv8d3miobf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5MW-8qSmUlhoD2manD-csclElOQBt8Ok"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "215244080211-lp3ks7jgiotpr9dlaghhqlcv8d3miobf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
