@@ -29,8 +29,7 @@ class MyApp extends StatelessWidget {
     Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false, 
-      home: login_vista(), 
+      home: LoginVista(), 
     );
   }
 }
-

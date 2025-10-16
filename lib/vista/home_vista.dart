@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage ({super.key});
+class HomeVista extends StatefulWidget {
+  const HomeVista ({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomeVista> createState() => _HomeVistaState();
 }
   
-class _MyHomePageState extends State<MyHomePage> { //pantalla por el momento (mensaje del Sprint 1)
+class _HomeVistaState extends State<HomeVista> { //pantalla por el momento (mensaje del Sprint 1)
   
   @override
   Widget build(BuildContext context) {

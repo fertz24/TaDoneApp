@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fer1/presentador/register_presentador.dart';
 
-class register_vista extends StatefulWidget {
+class RegisterVista extends StatefulWidget {
 
   @override
   State createState() {
@@ -10,7 +10,7 @@ class register_vista extends StatefulWidget {
   }
 }
 
-class _RegisterState extends State<register_vista> {
+class _RegisterState extends State<RegisterVista> {
 
   late String email, password;
   final _formKey = GlobalKey<FormState>();

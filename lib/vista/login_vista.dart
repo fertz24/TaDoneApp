@@ -1,4 +1,4 @@
-import 'package:fer1/main.dart';
+//import 'package:fer1/main.dart';
 import 'package:fer1/vista/home_vista.dart';
 import 'package:fer1/vista/register_vista.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,7 +7,7 @@ import 'package:fer1/presentador/login_presentador.dart';
 //los package nos proporcionan todo lo que necesitamos para Firebase, 
 //material de Flutter para UI asi como nuestras pantallas.
 
-class login_vista extends StatefulWidget { //se usa un StatefulWidget porque el estado cambiara 
+class LoginVista extends StatefulWidget { //se usa un StatefulWidget porque el estado cambiara 
   //clase para la pantalla del log in.
 
   @override
@@ -16,7 +16,7 @@ class login_vista extends StatefulWidget { //se usa un StatefulWidget porque el 
   }
 }
 
-class _LoginState extends State<login_vista> { //logica y diseño de la pantalla
+class _LoginState extends State<LoginVista> { //logica y diseño de la pantalla
 
   late String email, password; //variables para guardar lo que el usuario escriba en los campos.
   final _formKey = GlobalKey<FormState>(); //controla el formulario y validar sus campos.
@@ -78,7 +78,7 @@ class _LoginState extends State<login_vista> { //logica y diseño de la pantalla
         Text("OR", style: TextStyle(fontSize: 16, color: Colors.white)),
         SizedBox(height: 5),
         TextButton(onPressed: () { //este es el botón que llevará al usuario a la pantalla de registrar usuario
-          Navigator.push(context, MaterialPageRoute(builder: (context) => register_vista())); //vista del register_vista
+          Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterVista())); //vista del register_vista
         }, child: Text("Create account", style: TextStyle(fontSize: 20, color: Colors.white)),
         )
       ],
@@ -164,7 +164,7 @@ class _LoginState extends State<login_vista> { //logica y diseño de la pantalla
 
                       Navigator.pushAndRemoveUntil( //inicia la navegación a otra pantalla, el push no solo abre otra pantalla sino que borra el historial anterior para que el usuario no pueda regresar a la pantalla con el botón del celular de retroceso
                       context, //necesario para saber en que parte de la app estamos navegando
-                      MaterialPageRoute(builder: (context) => MyHomePage()), //pantalla temporal (para sprint 1)
+                      MaterialPageRoute(builder: (context) => HomeVista()), //pantalla temporal (para sprint 1)
                       (Route<dynamic> route) => false, //en esta función le decimos a Navigator que elimine todas las rutas anteriores para dejar solamente la pantalla de las tareas del usuario que accedió
                       //con false quiere decir que ninguna ruta anterior debe conservarse (pantalla login en este caso)
                     );
@@ -174,11 +174,7 @@ class _LoginState extends State<login_vista> { //logica y diseño de la pantalla
             debugPrint("Tipo de error: ${e.runtimeType}"); //""
 
             setState(() { //mensajes de los posibles errores que pueden existir dentro de la aplicación
-              if(e.code == 'user-not-found'){
-                error = "Usuario no encontrado";
-              } else if (e.code == 'wrong-password') {
-                error = "Contraseña incorrecta";
-              }else if (e.code == 'invalid-credential') {
+              if(e.code == 'user-not-found' || e.code == 'wrong-password' || e.code == 'invalid-credential'){ 
                 error = "Credenciales inválidas";
               } else {
                 error = "Error inesperado";
