@@ -1,4 +1,6 @@
+import 'package:fer1/vista/home_vista.dart';
 import 'package:fer1/vista/login_vista.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart'; //librería que permite inicializar y conectar la app (Flutter) con los servicios de Firebase
 
@@ -24,12 +26,19 @@ void main() async { //Funcion principal que arranca la aplicación y se pone com
 }
 
 class MyApp extends StatelessWidget { 
-  
+
+  //Creamos una instancia unica de Firebase Auth para acceder a funciones el cual es verificar
+  //si hay un usuario autenticado
+  final FirebaseAuth _auth = FirebaseAuth.instance; 
+
     @override
     Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false, 
-      home: LoginVista(), 
+
+      //Definimos la pantalla inciial de la app, si el usuario esta autenticado entonces muestra HomeVista
+      //sino muestra loginVista
+      home: _auth.currentUser != null ? HomeVista() : LoginVista(), 
     );
   }
 }

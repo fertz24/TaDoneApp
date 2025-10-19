@@ -7,7 +7,9 @@ import 'package:fer1/presentador/login_presentador.dart';
 //los package nos proporcionan todo lo que necesitamos para Firebase, 
 //material de Flutter para UI asi como nuestras pantallas.
 
-class LoginVista extends StatefulWidget { //se usa un StatefulWidget porque el estado cambiara 
+class LoginVista extends StatefulWidget {
+  const LoginVista({super.key});
+ //se usa un StatefulWidget porque el estado cambiara 
   //clase para la pantalla del log in.
 
   @override

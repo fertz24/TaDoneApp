@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fer1/presentador/register_presentador.dart';
 
 class RegisterVista extends StatefulWidget {
+  const RegisterVista({super.key});
 
   @override
   State createState() {
