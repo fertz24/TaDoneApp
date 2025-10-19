@@ -51,7 +51,7 @@ class _HomeVistaState extends State<HomeVista> {
             Row( //boton para tareas pendientes
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                InkWell(
+                InkWell( //InkWell detecta movimientos tactiles (como una animacion para cuando el usuario interactue con el boton)
                   onTap: () {
                     setState(() {
                       _botonIndice = 0; //cuando se presiona el boton para tareas pendientes, el indice cambia a 0
@@ -61,17 +61,18 @@ class _HomeVistaState extends State<HomeVista> {
                     height: 50,
                     width: MediaQuery.of(context).size.width / 2.2,
                     decoration: BoxDecoration(
-                      color: _botonIndice == 0 ? Colors.indigo : Colors.white, //cambia el color y tamaño (si esta activo)
+                      color: _botonIndice == 0 ? Colors.indigo : Colors.white, //si es 0 (activo) entonces es color Indigo sino entonces sera color blanco
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: Center(
+                    child: Center( //texto del boton con un estilo (si esta seleccionado)
                       child: Text(
                         "Pending",
                         style: TextStyle(
-                          fontSize: _botonIndice == 0 ? 16 : 14, 
+                          fontSize: _botonIndice == 0 ? 16 : 14, //si el boton es 0 entonces la fuente sera de tamaño 16 sino tamaño 14
+                          //para resaltar el boton cuando esta activo 
                           fontWeight: FontWeight.w500,
                           color: 
-                              _botonIndice == 0 ? Colors.white : Colors.black38,
+                              _botonIndice == 0 ? Colors.white : Colors.black38, //si el boton es 0 (activo) el texto es blanco sino sera gris oscuro
                         ),
                       ),
                     ),
