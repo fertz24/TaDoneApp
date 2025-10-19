@@ -34,9 +34,9 @@ class _HomeVistaState extends State<HomeVista> {
         actions: [
           IconButton(
             onPressed: () async {
-              await FirebaseAuth.instance.signOut();
+              await FirebaseAuth.instance.signOut(); //para salir de la sesion
               Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => LoginVista()));
+                  MaterialPageRoute(builder: (context) => LoginVista())); //una vez que sale entonces, se redirige al loginVista
             },
             icon: Icon(Icons.exit_to_app),
           )
