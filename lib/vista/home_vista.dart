@@ -14,20 +14,10 @@ class _HomeVistaState extends State<HomeVista> {
     int _botonIndice = 0; //variable que indica que el boton esta activo
     //0 = pendientes, 1 = completadas
 
-    final _widgets = [ //lista de widgets
-      
-      //Widget para tareas pendientes
-      Container(), 
-
-      //Widget para tareas completadas
-      Container(),
-
-    ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.indigo,
+      backgroundColor: Color(0xFF1d2630), 
       appBar: AppBar(
         backgroundColor: Color(0xFF1d2630),
         foregroundColor: Colors.white,
@@ -111,8 +101,6 @@ class _HomeVistaState extends State<HomeVista> {
                 )
               ],
             ),
-            SizedBox(height: 30),
-            _widgets[_botonIndice],
           ],
         ),
       ),
@@ -123,5 +111,4 @@ class _HomeVistaState extends State<HomeVista> {
       ),
     );
   }
-
 }
