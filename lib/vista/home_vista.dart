@@ -116,7 +116,12 @@ class _HomeVistaState extends State<HomeVista> {
           ],
         ),
       ),
-      
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.white,
+        onPressed: () {}, //aun no tiene funcionalidad
+        child: Icon(Icons.add),
+      ),
     );
   }
+
 }
