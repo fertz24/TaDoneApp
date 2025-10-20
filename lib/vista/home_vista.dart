@@ -52,6 +52,7 @@ class _HomeVistaState extends State<HomeVista> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 InkWell( //InkWell detecta movimientos tactiles (como una animacion para cuando el usuario interactue con el boton)
+                  borderRadius: BorderRadius.circular(10),
                   onTap: () {
                     setState(() {
                       _botonIndice = 0; //cuando se presiona el boton para tareas pendientes, el indice cambia a 0
@@ -77,12 +78,45 @@ class _HomeVistaState extends State<HomeVista> {
                       ),
                     ),
                   ),
+                ),
+                
+                //boton de tareas completadas
+                InkWell( //InkWell detecta movimientos tactiles (como una animacion para cuando el usuario interactue con el boton)
+                  borderRadius: BorderRadius.circular(10),
+                  onTap: () {
+                    setState(() {
+                      _botonIndice = 1; //cuando se presiona el boton para tareas completadas, el indice cambia a 1
+                    });
+                  },
+                  child: Container( //estilo del boton
+                    height: 50,
+                    width: MediaQuery.of(context).size.width / 2.2,
+                    decoration: BoxDecoration(
+                      color: _botonIndice == 1 ? Colors.indigo : Colors.white, //si es 1 (activo) entonces es color Indigo sino entonces sera color blanco
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center( //texto del boton con un estilo (si esta seleccionado)
+                      child: Text(
+                        "Completed",
+                        style: TextStyle(
+                          fontSize: _botonIndice == 1 ? 16 : 14, //si el boton es 1 entonces la fuente sera de tamaño 16 sino tamaño 14
+                          //para resaltar el boton cuando esta activo 
+                          fontWeight: FontWeight.w500,
+                          color: 
+                              _botonIndice == 1 ? Colors.white : Colors.black38, //si el boton es 1 (activo) el texto es blanco sino sera gris oscuro
+                        ),
+                      ),
+                    ),
+                  ),
                 )
               ],
-            )
+            ),
+            SizedBox(height: 30),
+            _widgets[_botonIndice],
           ],
         ),
       ),
+      
     );
   }
 }
