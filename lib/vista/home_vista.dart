@@ -33,7 +33,9 @@ class _HomeVistaState extends State<HomeVista> {
           )
         ],
       ),
-      body: SingleChildScrollView( //permite desplazamiento vertical
+      body: SingleChildScrollView( //permite desplazamiento vertical, evita overflows (que el contenido no quepa en la pantalla)
+      //util para pantallas con botones que cambiaran dinamicamente (en este caso tareas pendientes y completadas)
+        
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -49,8 +51,8 @@ class _HomeVistaState extends State<HomeVista> {
                     });
                   },
                   child: Container( //estilo del boton
-                    height: 50,
-                    width: MediaQuery.of(context).size.width / 2.2,
+                    height: 50, 
+                    width: MediaQuery.of(context).size.width / 2.2, //tamaño de casi la mitad de la pantalla.
                     decoration: BoxDecoration(
                       color: _botonIndice == 0 ? Colors.indigo : Colors.white, //si es 0 (activo) entonces es color Indigo sino entonces sera color blanco
                       borderRadius: BorderRadius.circular(10),
