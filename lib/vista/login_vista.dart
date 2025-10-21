@@ -166,7 +166,7 @@ class _LoginState extends State<LoginVista> { //logica y diseño de la pantalla
 
                       Navigator.pushAndRemoveUntil( //inicia la navegación a otra pantalla, el push no solo abre otra pantalla sino que borra el historial anterior para que el usuario no pueda regresar a la pantalla con el botón del celular de retroceso
                       context, //necesario para saber en que parte de la app estamos navegando
-                      MaterialPageRoute(builder: (context) => HomeVista()), //pantalla temporal (para sprint 1)
+                      MaterialPageRoute(builder: (context) => HomeVista()), //pantalla home (sprint 2)
                       (Route<dynamic> route) => false, //en esta función le decimos a Navigator que elimine todas las rutas anteriores para dejar solamente la pantalla de las tareas del usuario que accedió
                       //con false quiere decir que ninguna ruta anterior debe conservarse (pantalla login en este caso)
                     );
