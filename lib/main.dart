@@ -39,6 +39,8 @@ class MyApp extends StatelessWidget {
       //Definimos la pantalla inciial de la app, si el usuario esta autenticado entonces muestra HomeVista
       //sino muestra loginVista
       home: _auth.currentUser != null ? HomeVista() : LoginVista(), 
+      //con esta linea decimos que si _auth.currentUser no es null (sesión activa) entonces mostrará HomeVista
+      //si es null (sesión no activa) entonces mostrará LoginVista
     );
   }
 }

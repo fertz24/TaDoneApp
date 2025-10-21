@@ -52,7 +52,7 @@ class _HomeVistaState extends State<HomeVista> {
                   },
                   child: Container( //estilo del boton
                     height: 50, 
-                    width: MediaQuery.of(context).size.width / 2.2, //tamaño de casi la mitad de la pantalla.
+                    width: MediaQuery.of(context).size.width / 2.2, //tamaño de casi la mitad de la pantalla
                     decoration: BoxDecoration(
                       color: _botonIndice == 0 ? Colors.indigo : Colors.white, //si es 0 (activo) entonces es color Indigo sino entonces sera color blanco
                       borderRadius: BorderRadius.circular(10),
