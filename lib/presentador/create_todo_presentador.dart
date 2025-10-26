@@ -25,8 +25,12 @@ class CreateTodoPresentador {
   }
 
   //Para obtener tareas pendientes
-  Stream<List<TodoModelo>> get todos{
-    return todoCollection.where('uid', isEqualTo: user!.uid).where('completado', 
-            isEqualTo: false).snapshots().map(todoListFromSnapshot);
+  Stream<List<TodoModelo>> get todos{ //Con Stream se emiten los datos (en este caso la lista) en tiempo real (nos permite que la app tenga actualzaciones de forma automática cuando cambian los datos en Firebase)
+    
+    return todoCollection.where('uid', isEqualTo: user!.uid).where('completado', //Se filtra la colección para obtener solo los documentos donde el uid coincida con el usuario actual
+            isEqualTo: false).snapshots().map(todoListFromSnapshot); //Ponemos otro filtro para poder obtener solamente las tareas no completadas (por eso false)
+            //.snapshots() escuchará los cambios en tiempo real de la consulta filtrada
+            //.map(todoListFromSnapShot) convierte cada QuerySnapshot en una lista de objetos (TodoModelo) utilizando la función del modelo
   }
+  //En el presentador solo pedirá los datos ya transformados y listos para la vista
 }

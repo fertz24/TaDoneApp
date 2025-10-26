@@ -17,16 +17,22 @@ class TodoModelo { //Agregamos los campos de la tarea los cuales son los siguien
   required this.timestamp});
 }
 
-  List<TodoModelo> todoListFromSnapshot(QuerySnapshot snapshot) {
-    return snapshot.docs.map((doc) {
-      final data = doc.data() as Map<String, dynamic>;
 
-      return TodoModelo(
+  //Función pública que recibe un QuerySnapshot (es el resultado de una consulta a Firestore)
+  //y este devuelve una lista de objetos TodoModelo
+  List<TodoModelo> todoListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.docs.map((doc) { //Se itera sobre cada documento en el snapshot usando un Map para transformarlo en objeto y luego se forma la lista
+      final data = doc.data() as Map<String, dynamic>; //Extraemos los datos del documento como un mapa para poder acceder a los campos con su respectivo nombre
+
+      return TodoModelo( //Creamos una instancia de TodoModelo con los datos del documento
         id: doc.id, 
-        titulo: data['titulo'] ?? '', 
+        titulo: data['titulo'] ?? '', //Se pone ?? por si este no existe o es null entonces se pondrá una cadena vacía
         descripcion: data['descripcion'] ?? '', 
-        completado: data['completado'] ?? false, 
-        timestamp: data['creadoA'] ?? Timestamp.now(),
+        completado: data['completado'] ?? false, //Si no (??) existe entonces pondrá false
+        timestamp: data['creadoA'] ?? Timestamp.now(), //Sino (??) entonces pondrá la hora actual
       );
-    }).toList(); 
+    }).toList(); //Convertimos el resultado del Map en una lista
+
+    //¿Porqué en el modelo? esta función nos ayuda a convertir los datos en "crudo" de Firestore en objetos del modelo
+    //entonces decimos que esta función es responsabilidad del modelo
   }
