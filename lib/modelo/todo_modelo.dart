@@ -16,3 +16,17 @@ class TodoModelo { //Agregamos los campos de la tarea los cuales son los siguien
   required this.completado, 
   required this.timestamp});
 }
+
+  List<TodoModelo> todoListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.docs.map((doc) {
+      final data = doc.data() as Map<String, dynamic>;
+
+      return TodoModelo(
+        id: doc.id, 
+        titulo: data['titulo'] ?? '', 
+        descripcion: data['descripcion'] ?? '', 
+        completado: data['completado'] ?? false, 
+        timestamp: data['creadoA'] ?? Timestamp.now(),
+      );
+    }).toList(); 
+  }

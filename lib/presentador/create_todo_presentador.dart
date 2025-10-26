@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fer1/modelo/todo_modelo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -19,7 +20,13 @@ class CreateTodoPresentador {
         'titulo': titulo, 
         'descripcion': descripcion,
         'completado': false, //Tarea no completada por defecto
-        'creadoA': FieldValue.serverTimestamp(), //Se guarada la fecha y hora del servidor al momento de crearse
+        'creadoA': FieldValue.serverTimestamp(), //Se guarda la fecha y hora del servidor al momento de crearse
     });
+  }
+
+  //Para obtener tareas pendientes
+  Stream<List<TodoModelo>> get todos{
+    return todoCollection.where('uid', isEqualTo: user!.uid).where('completado', 
+            isEqualTo: false).snapshots().map(todoListFromSnapshot);
   }
 }
