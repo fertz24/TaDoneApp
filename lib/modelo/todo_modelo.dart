@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class TodoModelo {
+//Inicio del Todo
+
+class TodoModelo { //Agregamos los campos de la tarea los cuales son los siguientes:
   final String id;
   final String titulo;
   final String descripcion;
@@ -13,6 +15,4 @@ class TodoModelo {
   required this.descripcion, 
   required this.completado, 
   required this.timestamp});
-
 }
-
