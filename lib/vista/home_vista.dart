@@ -1,5 +1,5 @@
 //import 'package:fer1/vista/login_vista.dart';
-import 'package:fer1/modelo/todo_modelo.dart';
+//import 'package:fer1/modelo/todo_modelo.dart';
 import 'package:fer1/presentador/create_todo_presentador.dart';
 import 'package:flutter/material.dart';
 //import 'package:firebase_auth/firebase_auth.dart';
@@ -140,6 +140,51 @@ class _HomeVistaState extends State<HomeVista> {
               fontWeight: FontWeight.w500,
             ),
           ),
+          content: SingleChildScrollView(
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                children: [
+                  TextField(
+                    controller: _tituloControlador,
+                    decoration: InputDecoration(
+                      labelText: "Title", 
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                    TextField(
+                    controller: _descripcionControlador,
+                    decoration: InputDecoration(
+                      labelText: "Description", 
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(onPressed: () {
+              Navigator.pop(context);
+            }, 
+            child: Text("Cancel"),
+            ),
+            ElevatedButton( //Boton para guardar la tarea
+            style: ElevatedButton.styleFrom( //Estilo del boton Add
+              backgroundColor: Colors.indigo, 
+              foregroundColor: Colors.white,
+            ),
+              onPressed: () async {
+                await _presentador.crearTodo( //Llamamos al metodo crearTodo del presentador, enviando el texto que el usuario escribio en los campos de...
+                  _tituloControlador.text, //titulo de la tarea (captura el texto)
+                  _descripcionControlador.text, //descripcion de la tarea
+                );
+                Navigator.pop(context); //Cierra el popup despues de guardar la tarea
+              },
+              child: Text("Add"),
+            )
+          ],
         );
       },
     );
