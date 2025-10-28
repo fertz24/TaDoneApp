@@ -17,7 +17,6 @@ class TodoModelo { //Agregamos los campos de la tarea los cuales son los siguien
   required this.timestamp});
 }
 
-
   //Función pública que recibe un QuerySnapshot (es el resultado de una consulta a Firestore)
   //y este devuelve una lista de objetos TodoModelo
   List<TodoModelo> todoListFromSnapshot(QuerySnapshot snapshot) {

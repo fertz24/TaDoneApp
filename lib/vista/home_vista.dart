@@ -1,4 +1,6 @@
 //import 'package:fer1/vista/login_vista.dart';
+import 'package:fer1/modelo/todo_modelo.dart';
+import 'package:fer1/presentador/create_todo_presentador.dart';
 import 'package:flutter/material.dart';
 //import 'package:firebase_auth/firebase_auth.dart';
 
@@ -10,9 +12,14 @@ class HomeVista extends StatefulWidget {
 }
   
 class _HomeVistaState extends State<HomeVista> { 
-  
+    
     int _botonIndice = 0; //variable que indica que el boton esta activo
     //0 = pendientes, 1 = completadas
+    
+    final _widgets = [
+      //Tareas pendientes widget
+      Container()
+    ];
 
   @override
   Widget build(BuildContext context) {
@@ -104,14 +111,37 @@ class _HomeVistaState extends State<HomeVista> {
                 )
               ],
             ),
+            SizedBox(height: 30),
+              _widgets[_botonIndice],
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.white,
-        onPressed: () {}, //aun no tiene funcionalidad
+        onPressed: () {
+          _mostrarTarea(context);
+        }, 
         child: Icon(Icons.add),
       ),
+    );
+  }
+    void _mostrarTarea(BuildContext context) { //Funcion del onPressed
+      final TextEditingController _tituloControlador = TextEditingController(); //Creamos un controlador para poder capturar lo que el usuario escribe en los campos de titulo y descripcion
+      final TextEditingController _descripcionControlador = TextEditingController(); //Para la descripcion de la tarea
+      final CreateTodoPresentador _presentador = CreateTodoPresentador(); //Instanciamos la clase del create_todo_presentador para poder llamar a crearTodo si el usuario guarda la tarea
+
+      showDialog( //Para el popup
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            backgroundColor: Colors.white,
+            title: Text("Add Task",
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        );
+      },
     );
   }
 }
