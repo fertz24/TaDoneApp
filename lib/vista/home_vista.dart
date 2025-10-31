@@ -1,6 +1,7 @@
 //import 'package:fer1/vista/login_vista.dart';
 //import 'package:fer1/modelo/todo_modelo.dart';
 import 'package:fer1/presentador/create_todo_presentador.dart';
+import 'package:fer1/vista/pendientes_vista.dart';
 import 'package:flutter/material.dart';
 //import 'package:firebase_auth/firebase_auth.dart';
 
@@ -18,7 +19,7 @@ class _HomeVistaState extends State<HomeVista> {
     
     final _widgets = [
       //Tareas pendientes widget
-      Container()
+      PendientesVista()
     ];
 
   @override
