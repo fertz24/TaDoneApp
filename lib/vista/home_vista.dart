@@ -141,16 +141,16 @@ class _HomeVistaState extends State<HomeVista> {
               fontWeight: FontWeight.w500,
             ),
           ),
-          content: SingleChildScrollView(
+          content: SingleChildScrollView( //permitimos que el contenido del popup sea desplazable (este evita errores de desbordamiento en pantallas pequeñas)
             child: Container(
               width: MediaQuery.of(context).size.width,
-              child: Column(
+              child: Column( //Organiza widgets en forma vertical
                 children: [
                   TextField(
                     controller: _tituloControlador,
                     decoration: InputDecoration(
                       labelText: "Title", 
-                      border: OutlineInputBorder(),
+                      border: OutlineInputBorder(), //dibuja un borde rectangular con esquinas redondeadas alrededor de un campo de texto
                     ),
                   ),
                   SizedBox(height: 10),
