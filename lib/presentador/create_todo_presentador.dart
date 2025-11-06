@@ -15,7 +15,7 @@ class CreateTodoPresentador {
   //Para agregar tarea 
   Future<DocumentReference> crearTodo( //Función asíncrona donde recibe título y descripción y este devolverá una referencia al documento creado
     String titulo, String descripcion) async {
-      return await todoCollection.add({ //Se agrega un nuevo documento a la colección de "todos" con los siguientes campos
+      return await todoCollection.add({ //Se agrega un nuevo documento a la colección de "todos" con los siguientes campos:
         'uid': user!.uid, //ID del usuario autenticado, con ! se asume que no es nulo
         'titulo': titulo, 
         'descripcion': descripcion,

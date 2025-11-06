@@ -126,9 +126,9 @@ class _HomeVistaState extends State<HomeVista> {
       ),
     );
   }
-    void _mostrarTarea(BuildContext context) { //Funcion del onPressed
-      final TextEditingController _tituloControlador = TextEditingController(); //Creamos un controlador para poder capturar lo que el usuario escribe en los campos de titulo y descripcion
-      final TextEditingController _descripcionControlador = TextEditingController(); //Para la descripcion de la tarea
+    void _mostrarTarea(BuildContext context) { //Función del onPressed
+      final TextEditingController _tituloControlador = TextEditingController(); //Creamos un controlador para poder capturar lo que el usuario escribe en los campos de título y descripción
+      final TextEditingController _descripcionControlador = TextEditingController(); //Para la descripción de la tarea
       final CreateTodoPresentador _presentador = CreateTodoPresentador(); //Instanciamos la clase del create_todo_presentador para poder llamar a crearTodo si el usuario guarda la tarea
 
       showDialog( //Para el popup
@@ -171,17 +171,17 @@ class _HomeVistaState extends State<HomeVista> {
             }, 
             child: Text("Cancel"),
             ),
-            ElevatedButton( //Boton para guardar la tarea
-            style: ElevatedButton.styleFrom( //Estilo del boton Add
+            ElevatedButton( //Botón para guardar la tarea
+            style: ElevatedButton.styleFrom( //Estilo del botón Add
               backgroundColor: Colors.indigo, 
               foregroundColor: Colors.white,
             ),
               onPressed: () async {
-                await _presentador.crearTodo( //Llamamos al metodo crearTodo del presentador, enviando el texto que el usuario escribio en los campos de...
-                  _tituloControlador.text, //titulo de la tarea (captura el texto)
-                  _descripcionControlador.text, //descripcion de la tarea
+                await _presentador.crearTodo( //Llamamos al método crearTodo del presentador, enviando el texto que el usuario escribio en los campos de...
+                  _tituloControlador.text, //título de la tarea (captura el texto)
+                  _descripcionControlador.text, //descripción de la tarea
                 );
-                Navigator.pop(context); //Cierra el popup despues de guardar la tarea
+                Navigator.pop(context); //Cierra el popup después de guardar la tarea
               },
               child: Text("Add"),
             )
