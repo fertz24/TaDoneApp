@@ -1,5 +1,5 @@
 //import 'package:fer1/vista/login_vista.dart';
-//import 'package:fer1/modelo/todo_modelo.dart';
+import 'package:fer1/modelo/todo_modelo.dart';
 import 'package:fer1/presentador/create_todo_presentador.dart';
 import 'package:fer1/vista/pendientes_vista.dart';
 import 'package:flutter/material.dart';
@@ -126,9 +126,13 @@ class _HomeVistaState extends State<HomeVista> {
       ),
     );
   }
-    void _mostrarTarea(BuildContext context) { //Función del onPressed
-      final TextEditingController _tituloControlador = TextEditingController(); //Creamos un controlador para poder capturar lo que el usuario escribe en los campos de título y descripción
-      final TextEditingController _descripcionControlador = TextEditingController(); //Para la descripción de la tarea
+    void _mostrarTarea(BuildContext context, {TodoModelo? todo}) { //Función del onPressed
+    //el segundo parámetro es para que la función sepa si debe mostrar una tarea existente para poder editarla
+    //o en el caso contrario es crear una nueva tarea (todo es null), esta función sirve para ambos casos
+
+      //Dentro de los paréntesis se asigna un valor inicial al controlador del texto, si todo NO es null entonces se usa todo.titulo/descripcion (editar tarea) o SI es null entonces el campo queda vacío (crear tarea)
+      final TextEditingController _tituloControlador = TextEditingController(text: todo?.titulo); //Creamos un controlador para poder capturar lo que el usuario escribe en los campos de título y descripción
+      final TextEditingController _descripcionControlador = TextEditingController(text: todo?.descripcion); //Para la descripción de la tarea
       final CreateTodoPresentador _presentador = CreateTodoPresentador(); //Instanciamos la clase del create_todo_presentador para poder llamar a crearTodo si el usuario guarda la tarea
 
       showDialog( //Para el popup
@@ -136,7 +140,9 @@ class _HomeVistaState extends State<HomeVista> {
         builder: (context) {
           return AlertDialog(
             backgroundColor: Colors.white,
-            title: Text("Add Task",
+            title: Text(todo == null ? "Add Task" : "Edit Task", //If ternario para decidir que texto mostrar
+            //Si todo es null entonces significa que se esta creando una nueva tarea (Add Task) o si todo tiene datos entonces se está editando una tarea existente (Edit Task)
+
             style: TextStyle(
               fontWeight: FontWeight.w500,
             ),
