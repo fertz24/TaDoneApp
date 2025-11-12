@@ -2,6 +2,7 @@
 import 'package:fer1/modelo/todo_modelo.dart';
 import 'package:fer1/presentador/create_todo_presentador.dart';
 import 'package:fer1/presentador/update_todo_presentador.dart';
+import 'package:fer1/vista/completadas_vista.dart';
 import 'package:fer1/vista/pendientes_vista.dart';
 import 'package:flutter/material.dart';
 //import 'package:firebase_auth/firebase_auth.dart';
@@ -18,10 +19,15 @@ class _HomeVistaState extends State<HomeVista> {
     int _botonIndice = 0; //variable que indica que el boton esta activo
     //0 = pendientes, 1 = completadas
     
-    final _widgets = [
+    final List <Widget> _widgets = [ //Declaramos una lista fija de widgets
       //Tareas pendientes widget
-      PendientesVista()
+      PendientesVista(), 
+
+      //Tareas completadas widget
+      CompletadasVista(),
     ];
+    //Esta lista guarda los 2 widgets principales los cuales son las tareas completadas y pendiente, 
+    //Se usa junto con el _boton indice para mostrar dinámicamente uno u otro según lo que presione el usuario
 
   @override
   Widget build(BuildContext context) {
@@ -114,7 +120,8 @@ class _HomeVistaState extends State<HomeVista> {
               ],
             ),
             SizedBox(height: 30),
-              _widgets[_botonIndice],
+              _widgets[_botonIndice], //Accedemos a _widgets según el valor del _botonIndice
+              //Si es 0 muestra PendientesVista o si es 1 entonces CompletadasVista
           ],
         ),
       ),
