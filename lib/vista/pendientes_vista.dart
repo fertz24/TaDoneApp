@@ -52,37 +52,38 @@ class _PendientesVistaState extends State<PendientesVista> {
                 
                 child: Slidable( //Permite dezlizar horizontalmente un elemento (la tarea) para poder mostrar las acciones de editar/eliminar
                   key: ValueKey(todo.id), //Se asigna una clave única con todo.id, lo cual ayuda a Flutter el identificar y manejar de forma correcta el Widget cuando se reconstruye la interfaz (se evitan errores visuales o de estado)
-                  endActionPane: ActionPane(
-                    motion: DrawerMotion(), 
-                    children: [
-                      SlidableAction(
+                  
+                  endActionPane: ActionPane( //Definimos el panel de acciones que es para deslizar el elemento a la IZQUIERDA
+                    motion: DrawerMotion(), //Establecemos la animación del deslizamiento tipo "cajón"
+                    children: [ //Lista de las acciones
+                      SlidableAction( 
                         backgroundColor: Colors.green,
                         foregroundColor: Colors.white,
-                        icon: Icons.done,
+                        icon: Icons.done, //Para marcar la tarea como completada, el ícono de palomita
                         label: "Mark",
                         onPressed: (context) {
-                        _updateTodoPresentador.editarTodoEstado(todo.id, true);
+                        _updateTodoPresentador.editarTodoEstado(todo.id, true); //Utilizamos el estado de la tarea como completada usando el id
                       })
                     ],
                   ),
-                  startActionPane: ActionPane(
+                  startActionPane: ActionPane( //Definimos el panel de acciones que es para dezlizar el elemento a la DERECHA
                     motion: DrawerMotion(), 
                     children: [
                       SlidableAction(
                         backgroundColor: Colors.amber,
                         foregroundColor: Colors.white,
-                        icon: Icons.edit,
+                        icon: Icons.edit, //Ícono de lápiz para editar tarea
                         label: "Edit",
                         onPressed: (context) {
-                        _updateTodoPresentador.editarTodoEstado(todo.id, true);
+                        _updateTodoPresentador.editarTodoEstado(todo.id, true); //dudas
                       }),
                       SlidableAction(
                         backgroundColor: Colors.red,
                         foregroundColor: Colors.white,
-                        icon: Icons.delete,
+                        icon: Icons.delete, //Ícono de basura para eliminar tarea
                         label: "Delete",
                         onPressed: (context) async{
-                          await _deleteTodoPresentador.eliminarTodo(todo.id);
+                          await _deleteTodoPresentador.eliminarTodo(todo.id); //Al presionar el botón se llama el método de eliminarTodo pasando el id para poder borrar la tarea
                       })
                     ],
                   ),
