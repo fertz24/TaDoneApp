@@ -9,10 +9,10 @@ class CompletadasVista extends StatefulWidget {
   const CompletadasVista({super.key});
 
   @override
-  State<CompletadasVista> createState() => _PendientesVistaState();
+  State<CompletadasVista> createState() => _CompletadasVistaState();
 }
 
-class _PendientesVistaState extends State<CompletadasVista> {
+class _CompletadasVistaState extends State<CompletadasVista> {
   User? user = FirebaseAuth.instance.currentUser; //Obtenemos el usuario autenticado actual
   late String uid; //Declaramos una variable late la cual se inicializará después
 
