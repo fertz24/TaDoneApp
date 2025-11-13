@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fer1/modelo/todo_modelo.dart';
 
 final todoCollection = FirebaseFirestore.instance.collection('todos');
 
@@ -26,4 +27,13 @@ class UpdateTodoPresentador {
     //con await espera a que Firestore complete la operación antes de continuar
   }
   //Este método se encarga de marcar una tarea como completada o no, actualizando su estado en Firestore.
+
+  Stream<List<TodoModelo>> get todosCompletados { //Definimos un Stream para emitir la lista de las tareas completadas del TodoModelo (en tiempo real) 
+    return todoCollection //Accedemos a la colección "todos" de Firestore
+    .where('completada', isEqualTo: true) //Filtramos los documentos donde el campo de completada sea true (tareas complertadas)
+    .snapshots() //Escucha los cambios en tiempo real en base a esa consulta filtrada
+    .map((snapshot) => todoListFromSnapshot(snapshot)); //Convertimos cada resultado del snapshot en una lista de objetos (TodoModelo) utilizando la función del modelo
+  }
+  //Para este Stream devuelve automáticamente todas las tareas marcadas como completadas desde Firestore, 
+  //cada vez que se actualiza una tarea (marcada a hecha), el Stream emite la nueva lista actualizada en tiempo real
 }
