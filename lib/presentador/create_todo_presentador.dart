@@ -33,11 +33,4 @@ class CreateTodoPresentador {
             //.map(todoListFromSnapShot) convierte cada QuerySnapshot en una lista de objetos (TodoModelo) utilizando la función del modelo
   }
   //En el presentador solo pedirá los datos ya transformados y listos para la vista
-
-
-  //Para obtener tareas completadas
-  Stream<List<TodoModelo>> get completadasTodos{
-    return todoCollection.where('uid', isEqualTo: user!.uid).where('completado', 
-            isEqualTo: true).snapshots().map(todoListFromSnapshot);
-  }
 }
