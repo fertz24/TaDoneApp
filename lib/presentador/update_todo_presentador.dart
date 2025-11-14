@@ -22,8 +22,8 @@ class UpdateTodoPresentador {
 
 
   //Función asincrónica que recibe el id del documento y un valor bool de completada lo cual indica si la tarea está hecha (true) o pendiente (false)
-  Future<void> editarTodoEstado (String id, bool completada) async { 
-    return await todoCollection.doc(id).update({'completada': completada});
+  Future<void> editarTodoEstado (String id, bool completado) async { 
+    return await todoCollection.doc(id).update({'completado': completado});
     //Accede al documento con ese id dentro de la colección "todos" y este actualiza el campo de bool con el valor que recibió, 
     //con await espera a que Firestore complete la operación antes de continuar
   }
@@ -33,7 +33,7 @@ class UpdateTodoPresentador {
     final user = FirebaseAuth.instance.currentUser; //Variable para guardar el usuario autenticado de Firebase, aqui obtenemos su información, incluyendo el uid
     return todoCollection //Accedemos a la colección "todos" de Firestore
     .where('uid', isEqualTo: user!.uid) //Consulta a Firestore para que solo muestra los documentos del uid dentro de la colección sea igual al uid del usuario autenticado
-    .where('completada', isEqualTo: true) //Filtramos los documentos donde el campo de completada sea true (tareas complertadas)
+    .where('completado', isEqualTo: true) //Filtramos los documentos donde el campo de completada sea true (tareas complertadas)
     .snapshots() //Escucha los cambios en tiempo real en base a esa consulta filtrada
     .map((snapshot) => todoListFromSnapshot(snapshot)); //Convertimos cada resultado del snapshot en una lista de objetos (TodoModelo) utilizando la función del modelo
   }
