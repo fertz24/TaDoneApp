@@ -1,11 +1,11 @@
-//import 'package:fer1/vista/login_vista.dart';
+import 'package:fer1/vista/login_vista.dart';
 import 'package:fer1/modelo/todo_modelo.dart';
 import 'package:fer1/presentador/create_todo_presentador.dart';
 import 'package:fer1/presentador/update_todo_presentador.dart';
 import 'package:fer1/vista/completadas_vista.dart';
 import 'package:fer1/vista/pendientes_vista.dart';
 import 'package:flutter/material.dart';
-//import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class HomeVista extends StatefulWidget {
   const HomeVista ({super.key});
@@ -39,12 +39,11 @@ class _HomeVistaState extends State<HomeVista> {
         title: Text("To Do"),
         actions: [ //Boton para cerrar sesion donde, al presionarlo se cerrara la sesion con Firebase
           IconButton(
-            onPressed: null,
-            //onPressed: () async {
-              //await FirebaseAuth.instance.signOut(); //para salir de la sesion
-              //Navigator.pushReplacement(context,
-                  //MaterialPageRoute(builder: (context) => LoginVista())); //una vez que sale entonces, se redirige al loginVista
-            //},
+            onPressed: () async {
+              await FirebaseAuth.instance.signOut(); //para salir de la sesion
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => LoginVista())); //una vez que sale entonces, se redirige al loginVista
+            },
             icon: Icon(Icons.exit_to_app, color: Colors.white) //icono de salir de la sesion
           )
         ],
