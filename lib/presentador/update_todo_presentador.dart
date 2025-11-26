@@ -6,37 +6,26 @@ final todoCollection = FirebaseFirestore.instance.collection('todos');
 
 class UpdateTodoPresentador {
   
-  //Función asincrónica el cual recibe un id (del documento de Firestore) y los nuevos valores los cuales son el título y descripción de la tarea a editar
   Future<void> editarTodo(String id, String titulo, String descripcion) async { 
   final editarTodoCollection =
-      FirebaseFirestore.instance.collection("todos").doc(id); //Creamos una referencia al documento específico dentro de la colección de "todos" 
-      //utilizando el id que se le proporcionó a esa tarea, esto apunta de forma directa al registro que se quiere modificar
+      FirebaseFirestore.instance.collection("todos").doc(id); 
 
-      return await editarTodoCollection.update({ //Ejecuta la operación de la actualización en Firestore
-        'titulo': titulo, //Se actualiza el campo título del documento con el nuevo valor que recibió desde el parámetro
-        'descripcion': descripcion, // "" el campo descripción
+      return await editarTodoCollection.update({ 
+        'titulo': titulo, 
+        'descripcion': descripcion, 
     });
   }
-  //Esta función se encarga de buscar la tarea por medio del id en Firestore y 
-  //actualiza el título y descripción en base a los nuevos valores
 
-
-  //Función asincrónica que recibe el id del documento y un valor bool de completada lo cual indica si la tarea está hecha (true) o pendiente (false)
   Future<void> editarTodoEstado (String id, bool completado) async { 
     return await todoCollection.doc(id).update({'completado': completado});
-    //Accede al documento con ese id dentro de la colección "todos" y este actualiza el campo de bool con el valor que recibió, 
-    //con await espera a que Firestore complete la operación antes de continuar
   }
-  //Este método se encarga de marcar una tarea como completada o no, actualizando su estado en Firestore.
 
-  Stream<List<TodoModelo>> get todosCompletados { //Definimos un Stream para emitir la lista de las tareas completadas del TodoModelo (en tiempo real) 
-    final user = FirebaseAuth.instance.currentUser; //Variable para guardar el usuario autenticado de Firebase, aqui obtenemos su información, incluyendo el uid
-    return todoCollection //Accedemos a la colección "todos" de Firestore
-    .where('uid', isEqualTo: user!.uid) //Consulta a Firestore para que solo muestra los documentos del uid dentro de la colección sea igual al uid del usuario autenticado
-    .where('completado', isEqualTo: true) //Filtramos los documentos donde el campo de completada sea true (tareas complertadas)
-    .snapshots() //Escucha los cambios en tiempo real en base a esa consulta filtrada
-    .map((snapshot) => todoListFromSnapshot(snapshot)); //Convertimos cada resultado del snapshot en una lista de objetos (TodoModelo) utilizando la función del modelo
+  Stream<List<TodoModelo>> get todosCompletados { 
+    final user = FirebaseAuth.instance.currentUser; 
+    return todoCollection 
+    .where('uid', isEqualTo: user!.uid) 
+    .where('completado', isEqualTo: true) 
+    .snapshots()
+    .map((snapshot) => todoListFromSnapshot(snapshot)); 
   }
-  //Para este Stream devuelve automáticamente todas las tareas marcadas como completadas desde Firestore, 
-  //cada vez que se actualiza una tarea (marcada a hecha), el Stream emite la nueva lista actualizada en tiempo real
 }

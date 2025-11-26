@@ -4,74 +4,69 @@ import 'package:fer1/vista/register_vista.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fer1/presentador/login_presentador.dart';
-//los package nos proporcionan todo lo que necesitamos para Firebase, 
-//material de Flutter para UI asi como nuestras pantallas.
+
 
 class LoginVista extends StatefulWidget {
   const LoginVista({super.key});
- //se usa un StatefulWidget porque el estado cambiara 
-  //clase para la pantalla del log in.
 
   @override
   State createState() {
-    return _LoginState(); //para crear un estado asociado a la pantalla de _loginState
+    return _LoginState(); 
   }
 }
 
-class _LoginState extends State<LoginVista> { //logica y diseño de la pantalla
+class _LoginState extends State<LoginVista> { 
 
-  late String email, password; //variables para guardar lo que el usuario escriba en los campos.
-  final _formKey = GlobalKey<FormState>(); //controla el formulario y validar sus campos.
-  //con GlobalKey estamos creando una clave única que nos permite controlar el formulario desde afuera del widget
-  //
-
-  final LoginPresentador _presentador = LoginPresentador(); //instancia del presentador, este manejará la lógica del login
-  String error = ''; //variable para guardar el mensaje de error por si algo falla. 
+  late String email, password; 
+  final _formKey = GlobalKey<FormState>(); 
+ 
+  final LoginPresentador _presentador = LoginPresentador(); 
+  String error = ''; 
   
   @override 
-  void initState() {//este método se ejecuta al iniciar la pantalla
+  void initState() {
     super.initState();
 
   }
 
   @override 
-  Widget build(BuildContext context) {//build construye nuestra interfaz
-    debugPrint("Entrando a la login_vista"); //este mensaje es para poder ver en la consola que si esta entrando correctamente a esta pantalla (ayuda del equipo)
+  Widget build(BuildContext context) {
+    debugPrint("Entrando a la login_vista"); 
 
-    return Scaffold( //estructura base de la pantalla
+    return Scaffold( 
       backgroundColor: Colors.indigo,
-      body: Column( //con column organiza los widgets de forma vertical
+      body: Column( 
         mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center, //para centrar verticalmente
-        children: [ //children es una propiedad que recibe una lista de widgets dentro del contenedor como Column, row, entre otros
-          Padding( //agrega espacio alrededor del widget
-            padding: const EdgeInsets.all(16.0), //el espacio se define por 16 pixeles en todos los lados
-            child: Column( //widget, aqui se aplicará el espacio
+        mainAxisAlignment: MainAxisAlignment.center, 
+        children: [ 
+          Padding( 
+            padding: const EdgeInsets.all(16.0), 
+            child: Column( 
               children: [
             Text("Welcome back!", style: TextStyle(color: Colors.white, fontSize: 20)),
             Text("Log in here", style: TextStyle(color: Colors.white, fontSize: 20)),
               ],)
             ),
-            Offstage( //nos ayuda a ocultar el contenido si es que error está vacío
+            Offstage( 
               offstage: error == '',
             ),
             
-            Padding( //aquí estamos declarando el mensaje de error en color rojo si es que existe
+            Padding( 
               padding: const EdgeInsets.all(8.0),
               child: Text(error, style: TextStyle(color: Colors.red, fontSize: 16),),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: formulario(),//llamamos al método de formulario el cual tiene los campos de email y contraseña
+              child: formulario(),
             ),
-          buttonLogin(), //llamado al método de buttonLogin
-          nuevousuario(), //llamado al método para ir a la pantalla de registro de usuarios
+          buttonLogin(),
+          nuevousuario(), 
         ],
       ),
     );
   }
 
-  Widget nuevousuario() { //método para registrar usuario
+  Widget nuevousuario() { 
     return Column(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -79,8 +74,8 @@ class _LoginState extends State<LoginVista> { //logica y diseño de la pantalla
         SizedBox(height: 8),
         Text("OR", style: TextStyle(fontSize: 16, color: Colors.white)),
         SizedBox(height: 5),
-        TextButton(onPressed: () { //este es el botón que llevará al usuario a la pantalla de registrar usuario
-          Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterVista())); //vista del register_vista
+        TextButton(onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterVista())); 
         }, child: Text("Create account", style: TextStyle(fontSize: 20, color: Colors.white)),
         )
       ],
@@ -88,19 +83,19 @@ class _LoginState extends State<LoginVista> { //logica y diseño de la pantalla
   }
 
   Widget formulario() {
-    return Form( //form nos ayuda a agrupar los campos y permite validarlos
+    return Form( 
       key: _formKey,
       child: Column(children: [
-        buildEmail(), //hacemos llamado al método de email
+        buildEmail(),
         const Padding(padding: EdgeInsets.only(top: 12)),
-        buildPassword() //hacemos llamado al método de contraseña
+        buildPassword() 
       ],
     )
   );
 }
 
-  Widget buildEmail() { //método para el correo
-    return TextFormField( //para devolver el campo de texto con la validacion y al mismo tiempo formato
+  Widget buildEmail() { 
+    return TextFormField( 
       style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
         labelText: "Email",
@@ -113,10 +108,10 @@ class _LoginState extends State<LoginVista> { //logica y diseño de la pantalla
         )
       ),
       keyboardType: TextInputType.emailAddress,
-      onSaved: (String? value){ //aquí estamos guardando el valor de la variable email
+      onSaved: (String? value){ 
         email = value!;
       },
-      validator: (value){ //verificamos que el campo no este vacío
+      validator: (value){ 
         if(value!.isEmpty) {
           return "Este campo es obligatorio";
         }
@@ -138,8 +133,8 @@ class _LoginState extends State<LoginVista> { //logica y diseño de la pantalla
           borderSide: new BorderSide(color: Colors.white)
         )
       ),
-      obscureText: true, //con este comando ocultamos la contraseña
-      validator: (value){ //verificamos igual que el campo no este vacío
+      obscureText: true, 
+      validator: (value){ 
         if(value!.isEmpty) {
           return "Este campo es obligatorio";
         }
@@ -152,16 +147,16 @@ class _LoginState extends State<LoginVista> { //logica y diseño de la pantalla
   }
 
   Widget buttonLogin() {
-    return FractionallySizedBox( //para ajustar el tamaño del hijo (elevatedButton) según el procentaje del tamaño disponible
+    return FractionallySizedBox( 
       widthFactor: 0.6,
-    child: ElevatedButton( //aquí se valida el formulario
-      onPressed: () async{ //con async decimos que se pueden ejecutar tareas asíncronas (validar el form, esperar a Firebase)
+    child: ElevatedButton( 
+      onPressed: () async{ 
 
-        if(_formKey.currentState!.validate()) { //para validar el formulario, con ! aseguramos que el valor no es nulo
-          _formKey.currentState!.save(); //si se valida, entonces guarda los datos (correo y contraseña)
+        if(_formKey.currentState!.validate()) { 
+          _formKey.currentState!.save(); 
           
             try { 
-                UserCredential? credenciales = await _presentador.login(email, password); //llamamos al método login del presentador (el que usa Firebase para iniciar sesión)
+                UserCredential? credenciales = await _presentador.login(email, password); 
                   if(credenciales !=null && credenciales.user != null) {//verificamos que el resultado del login NO SEA NULL y que tenga un usuario válido (esto nos confirma que el login fue con éxito)
 
                       Navigator.pushAndRemoveUntil( //inicia la navegación a otra pantalla, el push no solo abre otra pantalla sino que borra el historial anterior para que el usuario no pueda regresar a la pantalla con el botón del celular de retroceso
